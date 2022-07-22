@@ -18,7 +18,9 @@ Route::get('/', [UsuariosController::class, 'index']);
 
 Route::post('/guardar', [UsuariosController::class, 'guardar'])->name('guardar');
 
-Route::get('/lista', [UsuariosController::class, 'listar']);
+Route::get('/lista', [UsuariosController::class, 'listar'])->name('lista');
+
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

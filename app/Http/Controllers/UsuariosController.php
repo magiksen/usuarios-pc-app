@@ -14,7 +14,7 @@ class UsuariosController extends Controller
 
 
         //$dbusuario = Usuario::where('ip', $ip)->get();
-        
+
 
         return view('welcome');
     }
@@ -33,13 +33,13 @@ class UsuariosController extends Controller
             'mac.unique' => 'MAC ya registrada',
             'ip.unique' => 'IP ya esta registrada',
         ]);
-        
-        $usuario = new Usuario; 
+
+        $usuario = new Usuario;
         $usuario->usuario = $request->usuario;
         $usuario->pcnombre = $request->pcnombre;
-        $usuario->departamento = $request->departamento;  
-        $usuario->mac = $request->mac; 
-        $usuario->ip = $request->ip;  
+        $usuario->departamento = $request->departamento;
+        $usuario->mac = $request->mac;
+        $usuario->ip = $request->ip;
         $usuario->save();
 
         return Redirect()->back()->with('success', 'Usuario registrado correctamente');
@@ -47,8 +47,8 @@ class UsuariosController extends Controller
     }
 
     public function listar() {
-        $dbusuario = Usuario::latest()->paginate(20);
-        
+        $dbusuario = Usuario::latest()->get();
+
         return view('lista', compact('dbusuario'));
     }
 }

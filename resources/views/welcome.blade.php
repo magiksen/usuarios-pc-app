@@ -13,6 +13,7 @@
       <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Sudebip.png/800px-Sudebip.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
       Sudebip - Registro de Computadoras y Usuarios
     </a>
+      <a href="{{ route('lista') }}" class="btn btn-info">Registros</a>
   </div>
 </nav>
 
@@ -38,14 +39,14 @@
                             <span class="text-danger">{{ $message  }}</span>
                         @enderror
                     </div>
-                    <div class="mb-3">    
+                    <div class="mb-3">
                         <label for="ip" class="form-label">IP</label>
                         <input class="form-control" type="text" name="ip" id="ip" placeholder="Introducir IP">
                         @error('ip')
                             <span class="text-danger">{{ $message  }}</span>
                         @enderror
                     </div>
-                    <div class="mb-3">     
+                    <div class="mb-3">
                         <label for="usuario" class="form-label">USUARIO</label>
                         <input class="form-control" type="text" name="usuario" id="usuario" placeholder="Introducir Nombre y Apellido">
                         @error('usuario')
@@ -62,8 +63,8 @@
                     <div class="mb-3">
                         <label for="departamento" class="form-label">UNIDAD ADMINISTRATIVA</label>
                         <input class="form-control" type="text" name="departamento" id="departamento" placeholder="Introducir el Departamento al cual pertenece">
-                    </div>    
-                        <input class="btn btn-primary" type="submit" value="Registrar">    
+                    </div>
+                        <input class="btn btn-primary" type="submit" value="Registrar">
                 </form>
             </div>
         </div>

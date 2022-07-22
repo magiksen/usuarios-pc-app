@@ -13,6 +13,7 @@
       <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Sudebip.png/800px-Sudebip.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
       Sudebip - Registro de Computadoras y Usuarios
     </a>
+    <a href="{{ url()->previous() }}" class="btn btn-danger">Volver</a>
   </div>
 </nav>
 
@@ -31,6 +32,7 @@
                         <th scope="col">Departamento</th>
                         <th scope="col">MAC</th>
                         <th scope="col">IP</th>
+                        <th scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,14 +44,17 @@
                         <td>{{ $dato->departamento }}</td>
                         <td>{{ $dato->mac }}</td>
                         <td>{{ $dato->ip }}</td>
+                        <td>
+                            <a href="" class="btn btn-warning">Editar</a>
+                            <a href="" class="btn btn-danger">Eliminar</a>
+                        </td>
                         </tr>
                     </tbody>
-                    @endforeach 
+                    @endforeach
                 </table>
-                {{ $dbusuario->links() }}
+{{--                {{ $dbusuario->links() }}--}}
             </div>
         </div>
-        
     </div>
 </div>
 
