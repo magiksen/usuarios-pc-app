@@ -25,7 +25,7 @@ Route::get('/eliminar/{id}', [UsuariosController::class, 'eliminar'])->name('usu
 Route::get('/lista', [UsuariosController::class, 'index'])->name('usuarios.index');
 
 Route::get('/editar/{id}', [UsuariosController::class, 'editar'])->name('usuarios.editar');
-Route::post('/update/{id}', [UsuariosController::class, 'update'])->name('usuarios.update');
+Route::post('/update/{usuario}', [UsuariosController::class, 'update'])->name('usuarios.update');
 
 
 

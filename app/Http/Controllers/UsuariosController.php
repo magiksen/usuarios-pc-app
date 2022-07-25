@@ -59,8 +59,21 @@ class UsuariosController extends Controller
         return view('editar', compact('usuario'));
     }
 
-    public function update(Request $request, $id) {
-        $usuario = Usuario::find($id);
+    public function update(Request $request, Usuario $usuario) {
+//        $usuario = Usuario::find($id);
+
+        $request->validate([
+            'usuario' => 'unique:usuarios,usuario,' . $usuario->id,
+            'pcnombre' => 'unique:usuarios,pcnombre,' . $usuario->id,
+            'mac' => 'unique:usuarios,mac,' . $usuario->id,
+            'ip' => 'unique:usuarios,ip,' . $usuario->id,
+        ],
+        [
+            'usuario.unique' => 'Usuario Ya registrado',
+            'pcnombre.unique' => 'Este nombe ya lo tiene otra PC',
+            'mac.unique' => 'MAC ya registrada',
+            'ip.unique' => 'IP ya esta registrada',
+        ]);
 
         $usuario->usuario = $request->usuario;
         $usuario->pcnombre = $request->pcnombre;

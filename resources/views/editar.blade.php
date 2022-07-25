@@ -30,7 +30,7 @@
         <div class="card mb-5">
             <div class="card-body">
                 <h5 class="card-title">Usuario y PC a Editar</h5>
-                <form action="{{ route('usuarios.update', $usuario->id) }}" method="POST">
+                <form action="{{ route('usuarios.update', $usuario) }}" method="POST">
                     @csrf
                     <div class="mb-3">
                         <label for="mac" class="form-label">MAC</label>
