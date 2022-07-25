@@ -12,11 +12,9 @@ class UsuariosController extends Controller
         // Traer IP
         //$ip=\Request::ip();
 
+        $dbusuario = Usuario::latest()->get();
 
-        //$dbusuario = Usuario::where('ip', $ip)->get();
-
-
-        return view('welcome');
+        return view('lista', compact('dbusuario'));
     }
 
     public function guardar(Request $request) {
@@ -46,9 +44,32 @@ class UsuariosController extends Controller
 
     }
 
-    public function listar() {
-        $dbusuario = Usuario::latest()->get();
+    public function eliminar($id) {
+        $usuario = Usuario::find($id);
 
-        return view('lista', compact('dbusuario'));
+        $usuario->delete();
+
+
+        return Redirect()->back()->with('success', 'Usuario eliminado correctamente');
     }
+
+    public function editar($id) {
+        $usuario = Usuario::find($id);
+
+        return view('editar', compact('usuario'));
+    }
+
+    public function update(Request $request, $id) {
+        $usuario = Usuario::find($id);
+
+        $usuario->usuario = $request->usuario;
+        $usuario->pcnombre = $request->pcnombre;
+        $usuario->departamento = $request->departamento;
+        $usuario->mac = $request->mac;
+        $usuario->ip = $request->ip;
+        $usuario->save();
+
+        return Redirect()->back()->with('success', 'Usuario actualizado correctamente');
+    }
+
 }

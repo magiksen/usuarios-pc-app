@@ -13,13 +13,20 @@
       <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Sudebip.png/800px-Sudebip.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
       Sudebip - Registro de Computadoras y Usuarios
     </a>
-    <a href="{{ url()->previous() }}" class="btn btn-danger">Volver</a>
+    <a href="{{ route('inicio') }}" class="btn btn-danger">Inicio</a>
   </div>
 </nav>
 
 <div class="container">
     <div class="row">
         <h1 class="mt-5 mb-5">Lista de Usuarios y Computadoras</h1>
+
+        @if(session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>{{ session('success') }}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
 
         <div class="card">
             <div class="card-body">
@@ -36,17 +43,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach($dbusuario as $dato)
+                    @foreach($dbusuario as $usuario)
                         <tr>
-                        <th scope="row">{{ $dato->id }}</th>
-                        <td>{{ $dato->usuario }}</td>
-                        <td>{{ $dato->pcnombre }}</td>
-                        <td>{{ $dato->departamento }}</td>
-                        <td>{{ $dato->mac }}</td>
-                        <td>{{ $dato->ip }}</td>
+                        <th scope="row">{{ $usuario->id }}</th>
+                        <td>{{ $usuario->usuario }}</td>
+                        <td>{{ $usuario->pcnombre }}</td>
+                        <td>{{ $usuario->departamento }}</td>
+                        <td>{{ $usuario->mac }}</td>
+                        <td>{{ $usuario->ip }}</td>
                         <td>
-                            <a href="" class="btn btn-warning">Editar</a>
-                            <a href="" class="btn btn-danger">Eliminar</a>
+                            <a href="{{ route('usuarios.editar', $usuario) }}" class="btn btn-warning">Editar</a>
+                            <a href="{{ route('usuarios.eliminar', $usuario) }}" class="btn btn-danger">Eliminar</a>
                         </td>
                         </tr>
                     </tbody>

@@ -14,11 +14,19 @@ use App\Http\Controllers\UsuariosController;
 |
 */
 
-Route::get('/', [UsuariosController::class, 'index']);
+Route::get('/', function () {
+    return view('welcome');
+})->name('inicio');
 
-Route::post('/guardar', [UsuariosController::class, 'guardar'])->name('guardar');
 
-Route::get('/lista', [UsuariosController::class, 'listar'])->name('lista');
+Route::post('/guardar', [UsuariosController::class, 'guardar'])->name('usuarios.store');
+Route::get('/eliminar/{id}', [UsuariosController::class, 'eliminar'])->name('usuarios.eliminar');
+
+Route::get('/lista', [UsuariosController::class, 'index'])->name('usuarios.index');
+
+Route::get('/editar/{id}', [UsuariosController::class, 'editar'])->name('usuarios.editar');
+Route::post('/update/{id}', [UsuariosController::class, 'update'])->name('usuarios.update');
+
 
 
 Route::middleware([
