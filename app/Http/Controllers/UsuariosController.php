@@ -12,7 +12,7 @@ class UsuariosController extends Controller
         // Traer IP
         //$ip=\Request::ip();
 
-        $dbusuario = Usuario::latest()->get();
+        $dbusuario = Usuario::orderBy('id', 'desc')->get();
 
         return view('lista', compact('dbusuario'));
     }
@@ -33,10 +33,10 @@ class UsuariosController extends Controller
         ]);
 
         $usuario = new Usuario;
-        $usuario->usuario = $request->usuario;
-        $usuario->pcnombre = $request->pcnombre;
-        $usuario->departamento = $request->departamento;
-        $usuario->mac = $request->mac;
+        $usuario->usuario = strtoupper($request->usuario);
+        $usuario->pcnombre = strtoupper($request->pcnombre);
+        $usuario->departamento = strtoupper($request->departamento);
+        $usuario->mac = strtoupper($request->mac);
         $usuario->ip = $request->ip;
         $usuario->save();
 
@@ -75,10 +75,10 @@ class UsuariosController extends Controller
             'ip.unique' => 'IP ya esta registrada',
         ]);
 
-        $usuario->usuario = $request->usuario;
-        $usuario->pcnombre = $request->pcnombre;
-        $usuario->departamento = $request->departamento;
-        $usuario->mac = $request->mac;
+        $usuario->usuario = strtoupper($request->usuario);
+        $usuario->pcnombre = strtoupper($request->pcnombre);
+        $usuario->departamento = strtoupper($request->departamento);
+        $usuario->mac = strtoupper($request->mac);
         $usuario->ip = $request->ip;
         $usuario->save();
 

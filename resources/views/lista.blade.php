@@ -53,7 +53,7 @@
                         <td>{{ $usuario->ip }}</td>
                         <td>
                             <a href="{{ route('usuarios.editar', $usuario) }}" class="btn btn-warning">Editar</a>
-                            <a href="{{ route('usuarios.eliminar', $usuario) }}" class="btn btn-danger">Eliminar</a>
+                            <a onclick="return confirm('Estas seguro de eliminar el registro ?')" href="{{ route('usuarios.eliminar', $usuario) }}" class="btn btn-danger">Eliminar</a>
                         </td>
                         </tr>
                     </tbody>
