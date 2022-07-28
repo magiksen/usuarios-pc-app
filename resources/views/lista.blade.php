@@ -1,70 +1,49 @@
-<!doctype html>
-<html lang="es">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Registrar PC Usuarios</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-  </head>
-  <body>
-  <nav class="navbar bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Sudebip.png/800px-Sudebip.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
-      Sudebip - Registro de Computadoras y Usuarios
-    </a>
-    <a href="{{ route('inicio') }}" class="btn btn-danger">Inicio</a>
-  </div>
-</nav>
+@extends('template')
 
-<div class="container">
-    <div class="row">
-        <h1 class="mt-5 mb-5">Lista de Usuarios y Computadoras</h1>
+@section('content')
+
+<div class="container px-4 mx-auto">
+        <h1 class="mt-5 mb-5 px-3 py-3 rounded bg-gray-800 text-2xl font-bold text-white w-1/2 mx-auto text-center">Lista de Usuarios y Computadoras</h1>
 
         @if(session('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>{{ session('success') }}</strong>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            <div class="bg-green-100 rounded-lg py-5 px-6 mb-4 text-base text-green-700 mb-3 w-3/5 mt-6 mx-auto" role="alert">
+                {{ session('success') }}
             </div>
         @endif
 
-        <div class="card">
-            <div class="card-body">
-                <table class="table">
-                    <thead>
+        <div class="px-4 mx-auto flex justify-center mt-5">
+                <table class="min-w-full text-center">
+                    <thead class="border-b bg-gray-800">
                         <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Usuario</th>
-                        <th scope="col">Nombre PC</th>
-                        <th scope="col">Departamento</th>
-                        <th scope="col">MAC</th>
-                        <th scope="col">IP</th>
-                        <th scope="col">Acciones</th>
+                        <th scope="col" class="text-sm font-medium text-white px-6 py-4">#</th>
+                        <th scope="col" class="text-sm font-medium text-white px-6 py-4">Usuario</th>
+                        <th scope="col" class="text-sm font-medium text-white px-6 py-4">Nombre PC</th>
+                        <th scope="col" class="text-sm font-medium text-white px-6 py-4">Departamento</th>
+                        <th scope="col" class="text-sm font-medium text-white px-6 py-4">MAC</th>
+                        <th scope="col" class="text-sm font-medium text-white px-6 py-4">IP</th>
+                        <th scope="col" class="text-sm font-medium text-white px-6 py-4">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                     @foreach($dbusuario as $usuario)
-                        <tr>
-                        <th scope="row">{{ $usuario->id }}</th>
-                        <td>{{ $usuario->usuario }}</td>
-                        <td>{{ $usuario->pcnombre }}</td>
-                        <td>{{ $usuario->departamento }}</td>
-                        <td>{{ $usuario->mac }}</td>
-                        <td>{{ $usuario->ip }}</td>
+                        <tr class="bg-gay-200 border-b">
+                        <th class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $usuario->id }}</th>
+                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ $usuario->usuario }}</td>
+                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ $usuario->pcnombre }}</td>
+                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ $usuario->departamento }}</td>
+                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ $usuario->mac }}</td>
+                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ $usuario->ip }}</td>
                         <td>
-                            <a href="{{ route('usuarios.editar', $usuario) }}" class="btn btn-warning">Editar</a>
-                            <a onclick="return confirm('Estas seguro de eliminar el registro ?')" href="{{ route('usuarios.eliminar', $usuario) }}" class="btn btn-danger">Eliminar</a>
+                            <a href="{{ route('usuarios.editar', $usuario) }}" class="bg-amber-600 text-white rounded px-4 py-2 mr-2">Editar</a>
+                            <a onclick="return confirm('Estas seguro de eliminar el registro ?')" href="{{ route('usuarios.eliminar', $usuario) }}" class="bg-red-900 text-white rounded px-4 py-2">Eliminar</a>
                         </td>
                         </tr>
                     </tbody>
                     @endforeach
                 </table>
 {{--                {{ $dbusuario->links() }}--}}
-            </div>
         </div>
-    </div>
 </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-  </body>
-</html>
+@endsection
+
