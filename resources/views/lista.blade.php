@@ -35,7 +35,11 @@
                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ $usuario->ip }}</td>
                         <td>
                             <a href="{{ route('usuarios.editar', $usuario) }}" class="bg-amber-600 text-white rounded px-4 py-2 mr-2">Editar</a>
-                            <a onclick="return confirm('Estas seguro de eliminar el registro ?')" href="{{ route('usuarios.eliminar', $usuario) }}" class="bg-red-900 text-white rounded px-4 py-2">Eliminar</a>
+{{--                            <a onclick="return deleteConfirmation()" href="{{ route('usuarios.eliminar', $usuario) }}" class="bg-red-900 text-white rounded px-4 py-2">Eliminar</a>--}}
+                            <form class="inline" action="{{ route('usuarios.eliminar', $usuario) }}" method="post">
+                                @csrf
+                                <button class="delete-confirm bg-red-900 text-white rounded px-4 py-2" >Eliminar</button>
+                            </form>
                         </td>
                         </tr>
                     </tbody>
@@ -45,5 +49,31 @@
         </div>
 </div>
 
+<script>
+    // const elemento = document.getElementById('delete-confirm');
+    $('.delete-confirm').click(function(event) {
+        var form =  $(this).closest("form");
+        event.preventDefault();
+        const { value: confirmacion } = Swal.fire({
+            title: 'Ingresa "Eliminar" para continuar',
+            input: 'text',
+            inputLabel: 'Confirmar eliminar',
+            inputValue: '',
+            showCancelButton: true,
+            inputValidator: (value) => {
+                if (value !== "Eliminar") {
+                    return 'Ingrese la palabra correcta'
+                }
+            }
+        }).then((confirmacion)=> {
+            if (confirmacion) {
+                // Swal.fire(`Item eliminado correctamente`);
+                form.submit();
+            }
+        });
+
+
+    });
+</script>
 @endsection
 

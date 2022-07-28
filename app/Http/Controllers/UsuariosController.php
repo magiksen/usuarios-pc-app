@@ -44,11 +44,8 @@ class UsuariosController extends Controller
 
     }
 
-    public function eliminar($id) {
-        $usuario = Usuario::find($id);
-
+    public function eliminar(Usuario $usuario) {
         $usuario->delete();
-
 
         return Redirect()->back()->with('success', 'Usuario eliminado correctamente');
     }

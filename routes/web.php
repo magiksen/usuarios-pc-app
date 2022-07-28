@@ -20,7 +20,7 @@ Route::get('/', function () {
 
 
 Route::post('/guardar', [UsuariosController::class, 'guardar'])->name('usuarios.store');
-Route::get('/eliminar/{id}', [UsuariosController::class, 'eliminar'])->name('usuarios.eliminar');
+Route::post('/eliminar/{usuario}', [UsuariosController::class, 'eliminar'])->name('usuarios.eliminar');
 
 Route::get('/lista', [UsuariosController::class, 'index'])->name('usuarios.index');
 
