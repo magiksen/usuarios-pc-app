@@ -33,10 +33,10 @@ class UsuariosController extends Controller
         ]);
 
         $usuario = new Usuario;
-        $usuario->usuario = strtoupper($request->usuario);
-        $usuario->pcnombre = strtoupper($request->pcnombre);
-        $usuario->departamento = strtoupper($request->departamento);
-        $usuario->mac = strtoupper($request->mac);
+        $usuario->usuario = mb_strtoupper($request->usuario, "UTF-8");
+        $usuario->pcnombre = mb_strtoupper($request->pcnombre, "UTF-8");
+        $usuario->departamento = mb_strtoupper($request->departamento, "UTF-8");
+        $usuario->mac = mb_strtoupper($request->mac, "UTF-8");
         $usuario->ip = $request->ip;
         $usuario->save();
 
@@ -72,10 +72,10 @@ class UsuariosController extends Controller
             'ip.unique' => 'IP ya esta registrada',
         ]);
 
-        $usuario->usuario = strtoupper($request->usuario);
-        $usuario->pcnombre = strtoupper($request->pcnombre);
-        $usuario->departamento = strtoupper($request->departamento);
-        $usuario->mac = strtoupper($request->mac);
+        $usuario->usuario = mb_strtoupper($request->usuario, "UTF-8");
+        $usuario->pcnombre = mb_strtoupper($request->pcnombre, "UTF-8");
+        $usuario->departamento = mb_strtoupper($request->departamento, "UTF-8");
+        $usuario->mac = mb_strtoupper($request->mac, "UTF-8");
         $usuario->ip = $request->ip;
         $usuario->save();
 

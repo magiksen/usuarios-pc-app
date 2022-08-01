@@ -46,7 +46,7 @@
                         <label for="departamento" class="uppercase text-gray-700 text-xs">UNIDAD ADMINISTRATIVA</label>
                         <input class="rounded border-gray-200 w-full mb-4" type="text" name="departamento" id="departamento" value="{{ $usuario->departamento }}">
                     </div>
-                    <input class="bg-cyan-900 text-white rounded px-4 py-2" type="submit" value="Editar">
+                    <input class="bg-cyan-900 text-white rounded px-4 py-2 cursor-pointer" type="submit" value="Editar">
                 </form>
             </div>
 </div>
