@@ -11,6 +11,16 @@
             </div>
         @endif
 
+        <div class="px-4 mx-auto flex justify-center mt-10">
+            <form method="GET">
+                <div class="mb-3">
+                    <input type="text" name="search" value="{{ request()->get('search') }}" class="rounded border-gray-800 mb-4"
+                           placeholder="Buscar..." aria-label="Search" aria-describedby="button-addon2">
+                    <button class="bg-amber-600 text-white rounded px-4 py-2 inline" type="submit" id="button-addon2">Buscar</button>
+                </div>
+            </form>
+        </div>
+
         <div class="px-4 mx-auto flex justify-center mt-5">
                 <table class="min-w-full text-center">
                     <thead class="border-b bg-gray-800">

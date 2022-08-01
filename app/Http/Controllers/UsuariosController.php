@@ -7,12 +7,18 @@ use App\Models\Usuario;
 
 class UsuariosController extends Controller
 {
-    public function index() {
+    public function index(Request $request) {
 
         // Traer IP
         //$ip=\Request::ip();
 
-        $dbusuario = Usuario::orderBy('id', 'desc')->get();
+        if ($request->filled('search')) {
+            $dbusuario = Usuario::search($request->search)->get(); // search by value
+        } else {
+            $dbusuario = Usuario::orderBy('id', 'desc')->get();
+        }
+
+        //$dbusuario = Usuario::orderBy('id', 'desc')->get();
 
         return view('lista', compact('dbusuario'));
     }
