@@ -44,7 +44,7 @@
                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ $usuario->mac }}</td>
                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ $usuario->ip }}</td>
                         <td>
-                            <a href="{{ route('usuarios.editar', $usuario) }}" class="bg-amber-600 text-white rounded px-4 py-2 mr-2">Editar</a>
+                            <a href="{{ route('usuarios.editar', $usuario) }}" class="bg-amber-600 text-white rounded px-4 py-2 mr-2 edit-confirm">Editar</a>
 {{--                            <a onclick="return deleteConfirmation()" href="{{ route('usuarios.eliminar', $usuario) }}" class="bg-red-900 text-white rounded px-4 py-2">Eliminar</a>--}}
 {{--                            <form class="inline" action="{{ route('usuarios.eliminar', $usuario) }}" method="post">--}}
 {{--                                @csrf--}}
@@ -60,33 +60,33 @@
 </div>
 
 <script>
-    // const elemento = document.getElementById('delete-confirm');
-    // $('.delete-confirm').click(function(event) {
-    //     var form =  $(this).closest("form");
-    //     event.preventDefault();
-    //     const { value: confirmacion } = Swal.fire({
-    //         title: 'Ingresa "Eliminar" para continuar',
-    //         input: 'text',
-    //         inputLabel: 'Confirmar eliminar',
-    //         inputValue: '',
-    //         showCancelButton: true,
-    //         allowOutsideClick: false,
-    //         confirmButtonText: 'Eliminar',
-    //         cancelButtonText: "Cancelar",
-    //         inputValidator: (value) => {
-    //             if (value !== "Eliminar") {
-    //                 return 'Ingrese la palabra correcta'
-    //             }
-    //         }
-    //     }).then((confirmacion)=> {
-    //         if (confirmacion === true) {
-    //             // Swal.fire(`Item eliminado correctamente`);
-    //             form.submit();
-    //         }
-    //     });
-    //
-    //
-    // });
+    const elemento = document.getElementById('edit-confirm');
+    $('.edit-confirm').click(function(event) {
+
+        event.preventDefault();
+
+        const { value: confirmacion } = Swal.fire({
+            title: 'Ingresa la clave para editar',
+            input: 'text',
+            inputLabel: 'Confirmar editar',
+            inputValue: '',
+            icon: "warning",
+            showCancelButton: true,
+            allowOutsideClick: false,
+            confirmButtonText: 'Editar',
+            cancelButtonText: "Cancelar",
+            inputValidator: (value) => {
+                if (value !== "1234") {
+                    return 'Clave incorrecta'
+                }
+            }
+        }).then((confirmacion) => {
+            if (confirmacion.isConfirmed) {
+                window.location = $(this).attr('href');
+            }
+        });
+
+    });
 </script>
 @endsection
 
